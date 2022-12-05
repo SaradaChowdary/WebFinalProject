@@ -1,0 +1,36 @@
+tittle{
+    font-weight: bold;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    background-color: cadetblue;
+  }
+  body {
+    text-align: center;
+      padding: 50px;
+      font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+    }
+  footer{
+    font-weight: bold;
+    font-size: 22px;
+    background-color: darkorange;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+  }
+  table{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+  th{
+    background-color: aquamarine;
+  }
+  .fields{
+    display: flex;
+    justify-content: left;
+  }
+  body{
+    width: 100%;
+  }

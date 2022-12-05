@@ -1,0 +1,99 @@
+<table border="1">
+<tr>
+    <th>plot</th>
+    <th>genres</th>
+    <th>runtime</th>
+    <th>metacritic</th>
+    <th>cast</th>
+    <th>title</th>
+    <th>fullplot</th>
+    <th>languages</th>
+    <th>countries</th>
+    <th>released</th>
+    <th>writers</th>
+    <th>directors</th>
+    <th>rated</th>
+    <th>awards</th>
+    <th>lastupdated</th>
+    <th>year</th>
+    <th>imdb</th>
+    <th>type</th>
+    <th>tomatoes</th>
+</tr>
+<tr>
+    <td>{{data.plot}}</td>
+    <td>
+        {{#each data.genres}}
+            <ol>
+                <li>{{this}}</li>
+            </ol><br>
+        {{/each}}
+    </td>
+    <td>{{data.runtime}}</td>
+    <td>{{data.metacritic}}</td>
+    <td>
+    {{#each data.cast}}
+        <ul>
+            <li>{{this}}</li>
+        </ul></br>
+    {{/each}}
+    </td>
+    <td>{{data.title}}</td>
+    <td>{{data.fullplot}}</td>
+    <td>{{#each data.languages}}
+        <ol><li>{{this}}</li></ol>
+        {{/each}}
+    </td>
+    <td>{{#each data.countries}}
+        <ol><li>{{this}}</li></ol>
+        {{/each}}
+    </td>
+    <td>{{#each data.released}}
+        <ol><li>{{this}}</li></ol>
+        {{/each}}
+    </td>
+    <td>{{#each data.writers}}
+        <ol><li>{{this}}</li></ol>
+        {{/each}}
+    </td>
+    <td>{{#each data.directors}}
+        <ol><li>{{this}}</li></ol>
+        {{/each}}
+    </td>
+    <td>{{data.rated}}</td>
+    <td>
+        wins : {{data.awards.wins}}</br>
+        nominations : {{data.awards.nominations}}</br>
+        text : {{data.awards.text}}</br>
+    </td>
+    <td>{{data.lastupdated}}</td>
+    <td>{{data.year}}</td>
+    <td>
+        rating : {{data.awards.rating}}
+        votes : {{data.awards.votes}}
+        id : {{data.awards.id}}
+    </td>
+    <td>{{data.type}}</td>
+    <td>
+        website : {{data.tomatoes.website}}</br>
+        viewer: </br>
+        <ol>
+            <li>rating: {{data.tomatoes.viewer.rating}}</li>
+            <li>numReviews: {{data.tomatoes.viewer.numReviews}}</li>
+            <li>meter :{{data.tomatoes.viewer.meter}}</li>
+        </ol>
+        dvd : {{data.tomatoes.dvd}}</br>
+        critic: </br>
+        <ol>
+            <li>rating: {{data.tomatoes.critic.rating}}</li>
+            <li>numReviews : {{data.tomatoes.critic.numReviews}}</li>
+            <li>meter : {{data.tomatoes.critic.meter}}</li>
+        </ol></br>
+        boxOffice : {{data.tomatoes.boxOffice}}</br>
+        rotten : {{data.tomatoes.rotten}}</br>
+        production : {{data.tomatoes.production}}</br>
+        lastUpdated : {{data.tomatoes.lastUpdated}}</br>
+        fresh : {{data.tomatoes.fresh}}</br>
+    </td>
+</tr>
+</table>
