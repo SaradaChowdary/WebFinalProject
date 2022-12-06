@@ -5,6 +5,7 @@ var path = require('path');
 var mongoose = require('mongoose');
 require('dotenv').config()
 var app = express();
+const bcrypt = require('bcrypt');
 // var database = require('./config/database');
 var bodyParser = require('body-parser'); // pull information from HTML POST (express4)
  
@@ -15,6 +16,8 @@ app.use(bodyParser.urlencoded({'extended':'true'}));            // parse applica
 app.use(bodyParser.json());                                     // parse application/json
 app.use(bodyParser.json({ type: 'application/vnd.api+json' })); // parse application/vnd.api+json as json
 app.use(express.static(path.join(__dirname, 'public')));
+
+const userdata=[];
 
 // Intializing template engine
 app.engine('.hbs', exphbs.engine({ 
@@ -218,3 +221,66 @@ app.post("/api/movieform",async (req,res) => {
 	await res.render('movieresult', {data: result});
   }
 )
+
+app.get("/",(req,res)=>{
+	res.render('login');
+});
+
+app.post("/",(req,res)=>{
+	uname1 = req.body.username;
+	pass = req.body.password;
+
+	console.log(uname1);
+	console.log(pass);
+	console.log(process.env.userdata);
+	//console.log(userdata[0].username);
+	userdata.forEach(element => {
+		if(element.username==uname1 && element.password==pass)
+		{
+			bcrypt.compare(element.password, element.hash).then((result) => {
+				// result	 === true
+				console.log(result);
+				if(result == true){
+					res.render('loginsuccess');
+				}
+				else{
+					res.render('errorlogin');
+				}
+			});
+		}
+		else
+		{
+			res.render('errorlogin');
+		}
+	});	
+});
+
+app.get("/register",(req,res)=>{
+	res.render("register");
+})
+
+app.post("/register",(req,res)=>{
+
+	uname = req.body.reg_username;
+	pass = req.body.reg_password;
+
+	bcrypt.hash(pass, 5).then(h=>{ // Hash the password using a Salt that was generated using 10 rounds
+		console.log(h)
+		userdata.push({
+			username:uname,
+			password:pass,
+			hash:h
+		})
+		console.log(userdata);
+
+		// process.env.userdata.push({
+		// 		username:uname,
+		// 		password:pass,
+		// 		hash:h
+		// })
+
+		})
+		.catch(err=>{
+		console.log(err); // Show any errors that occurred during the process
+	});
+});
